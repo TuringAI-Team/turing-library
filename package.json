@@ -1,0 +1,28 @@
+{
+  "name": "turing.sh",
+  "version": "0.0.1",
+  "description": "A package to interact with the api from TuringAI (turing.sh)",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TuringAI-Team/turing-library.git"
+  },
+  "keywords": [
+    "turing"
+  ],
+  "author": "TuringAI",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/TuringAI-Team/turing-library/issues"
+  },
+  "homepage": "https://github.com/TuringAI-Team/turing-library#readme",
+  "dependencies": {
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}

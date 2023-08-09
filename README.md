@@ -1,2 +1,3 @@
-# turing-library
-A collection of libraries for different languages to interact with TuringAPI
+# turing.js
+
+The official library to interact with TuringAPI using javascript or typescript.
