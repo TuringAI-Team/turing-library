@@ -21,7 +21,7 @@ export default class Base {
     this.options = start.options;
   }
 
-  async fetch(url: string, options: any): Promise<EventEmitter> {
+  async fetch(url: string, options: any): Promise<EventEmitter | any> {
     let isStream = options.stream;
     if (isStream === undefined) isStream = this.options.stream;
     if (isStream === undefined) isStream = false;

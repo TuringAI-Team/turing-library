@@ -34,7 +34,8 @@ async function generateFiles(modules: any[], modelsList) {
     await writeFileSync(
       `./src/modules/${module}.ts`,
       `import Base from "../base";
-      
+      import { EventEmitter } from "events";
+
       export default class ${
         module.charAt(0).toUpperCase() + module.slice(1)
       } extends Base {
@@ -59,9 +60,23 @@ async function generateFiles(modules: any[], modelsList) {
                 return `${param}${parameter.required ? "" : "?"}: ${t};`;
               })
               .join("\n");
+            let responseType = "any";
+            if (model.response) {
+              let responseParams = Object.keys(model.response);
+              responseType = responseParams
+                .map((param) => {
+                  let parameter = model.response[param];
+                  let t = parameter.type;
+                  if (t == "array") t = "any[]";
+                  return `${param}${parameter.required ? "" : "?"}: ${t};`;
+                })
+                .join("\n");
+              responseType = `{${responseType}}`;
+            }
+
             return `async ${nameFn}(data: {
                 ${type}
-            }){
+            }): Promise<EventEmitter | ${responseType}>{
              return await this.fetch("https://api.turing.sh/${module}/${model.name}", data);
            }`;
           })

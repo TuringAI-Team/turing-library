@@ -1,4 +1,5 @@
 import Base from "../base";
+import { EventEmitter } from "events";
 
 export default class Image extends Base {
   constructor(start: {
@@ -20,7 +21,7 @@ export default class Image extends Base {
     height?: number;
     cfg_scale?: number;
     stream?: boolean;
-  }) {
+  }): Promise<EventEmitter | any> {
     return await this.fetch("https://api.turing.sh/image/anything", data);
   }
   async controlnet(data: {
@@ -28,7 +29,7 @@ export default class Image extends Base {
     model: string;
     image: string;
     stream?: boolean;
-  }) {
+  }): Promise<EventEmitter | any> {
     return await this.fetch("https://api.turing.sh/image/controlnet", data);
   }
   async dall(data: {
@@ -37,7 +38,17 @@ export default class Image extends Base {
     size?: string;
     image?: string;
     stream?: boolean;
-  }) {
+  }): Promise<
+    | EventEmitter
+    | {
+        cost: number;
+        results: any[];
+        status: string;
+        progress?: number;
+        id: string;
+        done: boolean;
+      }
+  > {
     return await this.fetch("https://api.turing.sh/image/dall-e", data);
   }
   async kandinsky(data: {
@@ -51,7 +62,16 @@ export default class Image extends Base {
     cfg_scale?: number;
     model_version?: string;
     stream?: boolean;
-  }) {
+  }): Promise<
+    | EventEmitter
+    | {
+        cost: number;
+        results: any[];
+        status: string;
+        progress?: number;
+        id: string;
+      }
+  > {
     return await this.fetch("https://api.turing.sh/image/kandinsky", data);
   }
   async sh(data: {
@@ -69,13 +89,35 @@ export default class Image extends Base {
     model?: string;
     nsfw?: boolean;
     stream?: boolean;
-  }) {
+  }): Promise<
+    | EventEmitter
+    | {
+        cost?: number;
+        id?: string;
+        status?: string;
+        progress?: number;
+        queue_position?: number;
+        results?: any[];
+      }
+  > {
     return await this.fetch("https://api.turing.sh/image/sh", data);
   }
-  async upscale(data: { upscaler?: string; image: string }) {
+  async upscale(data: {
+    upscaler?: string;
+    image: string;
+  }): Promise<
+    | EventEmitter
+    | { cost?: number; result?: string; status?: string; done?: boolean }
+  > {
     return await this.fetch("https://api.turing.sh/image/upscale", data);
   }
-  async vision(data: { model: any[]; image: string }) {
+  async vision(data: {
+    model: any[];
+    image: string;
+  }): Promise<
+    | EventEmitter
+    | { cost?: number; description?: string; text?: string; done?: boolean }
+  > {
     return await this.fetch("https://api.turing.sh/image/vision", data);
   }
 }

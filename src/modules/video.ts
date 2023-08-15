@@ -1,4 +1,5 @@
 import Base from "../base";
+import { EventEmitter } from "events";
 
 export default class Video extends Base {
   constructor(start: {
@@ -10,7 +11,10 @@ export default class Video extends Base {
   }) {
     super(start);
   }
-  async zelescope(data: { prompt: string; duration?: number }) {
+  async zelescope(data: {
+    prompt: string;
+    duration?: number;
+  }): Promise<EventEmitter | any> {
     return await this.fetch("https://api.turing.sh/video/zelescope", data);
   }
 }

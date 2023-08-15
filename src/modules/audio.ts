@@ -1,4 +1,5 @@
 import Base from "../base";
+import { EventEmitter } from "events";
 
 export default class Audio extends Base {
   constructor(start: {
@@ -15,7 +16,7 @@ export default class Audio extends Base {
     model?: string;
     duration?: number;
     stream?: boolean;
-  }) {
+  }): Promise<EventEmitter | any> {
     return await this.fetch("https://api.turing.sh/audio/music", data);
   }
   async stt(data: {
@@ -24,7 +25,7 @@ export default class Audio extends Base {
     diarization?: boolean;
     type?: string;
     stream?: boolean;
-  }) {
+  }): Promise<EventEmitter | any> {
     return await this.fetch("https://api.turing.sh/audio/stt", data);
   }
   async tts(data: {
@@ -34,7 +35,7 @@ export default class Audio extends Base {
     language: string;
     slow?: boolean;
     stream?: boolean;
-  }) {
+  }): Promise<EventEmitter | any> {
     return await this.fetch("https://api.turing.sh/audio/tts", data);
   }
 }
