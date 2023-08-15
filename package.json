@@ -1,6 +1,6 @@
 {
   "name": "turing.sh",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "description": "A package to interact with the api from TuringAI (turing.sh)",
   "main": "dist/index.js",
   "type": "module",
