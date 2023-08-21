@@ -1,4 +1,4 @@
-import Base from "../base";
+import Base from "../base.js";
 import { EventEmitter } from "events";
 
 export default class Text extends Base {
@@ -55,6 +55,7 @@ export default class Text extends Base {
     model?: string;
     max_tokens?: number;
     temperature?: number;
+    id?: string;
   }): Promise<
     EventEmitter | { cost?: number; result?: string; done?: boolean }
   > {

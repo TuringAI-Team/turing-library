@@ -33,7 +33,7 @@ async function generateFiles(modules: any[], modelsList) {
     models = models.filter((model) => model.name);
     await writeFileSync(
       `./src/modules/${module}.ts`,
-      `import Base from "../base";
+      `import Base from "../base.js";
       import { EventEmitter } from "events";
 
       export default class ${
@@ -91,7 +91,7 @@ async function generateFiles(modules: any[], modelsList) {
         (module) =>
           `import ${
             module.charAt(0).toUpperCase() + module.slice(1)
-          } from "./modules/${module}";`
+          } from "./modules/${module}.js";`
       )
       .join("\n")}
 

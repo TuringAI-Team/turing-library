@@ -1,4 +1,4 @@
-import Base from "../base";
+import Base from "../base.js";
 import { EventEmitter } from "events";
 
 export default class Audio extends Base {

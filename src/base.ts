@@ -18,7 +18,9 @@ export default class Base {
   }) {
     this.apiKey = start.apiKey;
     this.captchaKey = start.captchaKey;
-    this.options = start.options;
+    if (start.options) {
+      this.options = start.options;
+    }
   }
 
   async fetch(url: string, options: any): Promise<EventEmitter | any> {
@@ -27,11 +29,10 @@ export default class Base {
     if (isStream === undefined) isStream = false;
     let headers = {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + this.apiKey,
+      Authorization: this.apiKey,
       "x-captcha-token": this.captchaKey,
     };
     delete options.stream;
-
     if (isStream) {
       let event = new EventEmitter();
       fetchEventSource(url, {
@@ -41,7 +42,8 @@ export default class Base {
           ...options,
           stream: true,
         }),
-        onmessage: (msg: any) => {
+        onopen: async () => {},
+        onmessage: async (msg: any) => {
           let ev = JSON.parse(msg.data);
           event.emit("data", ev);
         },

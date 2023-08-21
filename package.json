@@ -1,6 +1,6 @@
 {
   "name": "turing.sh",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.3",
   "description": "A package to interact with the api from TuringAI (turing.sh) and access the most powerful AI models in the world.",
   "main": "dist/index.js",
   "type": "module",
@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.5.0",
+    "dotenv": "^16.3.1",
     "typescript": "^5.1.6"
   }
 }
