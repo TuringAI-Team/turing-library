@@ -6,21 +6,23 @@ export default class Base {
   apiKey: string;
   captchaKey: string;
   options: {
-    stream: boolean;
+    stream?: boolean;
+    host?: string;
   };
 
   constructor(start: {
     apiKey: string;
     captchaKey: string;
-    options: {
-      stream: boolean;
+    options?: {
+      stream?: boolean;
+      host?: string;
     };
   }) {
     this.apiKey = start.apiKey;
     this.captchaKey = start.captchaKey;
-    if (start.options) {
-      this.options = start.options;
-    }
+    if (start.options?.stream) this.options.stream = start.options.stream;
+    if (start.options?.host) this.options.host = start.options.host;
+    else this.options.host = "https://api.turing.sh/";
   }
 
   async fetch(url: string, options: any): Promise<EventEmitter | any> {

@@ -5,8 +5,9 @@ export default class Image extends Base {
   constructor(start: {
     apiKey: string;
     captchaKey: string;
-    options: {
-      stream: boolean;
+    options?: {
+      stream?: boolean;
+      host?: string;
     };
   }) {
     super(start);
@@ -22,7 +23,7 @@ export default class Image extends Base {
     cfg_scale?: number;
     stream?: boolean;
   }): Promise<EventEmitter | any> {
-    return await this.fetch("https://api.turing.sh/image/anything", data);
+    return await this.fetch("${this.options.host}/image/anything", data);
   }
   async controlnet(data: {
     prompt: string;
@@ -30,7 +31,7 @@ export default class Image extends Base {
     image: string;
     stream?: boolean;
   }): Promise<EventEmitter | any> {
-    return await this.fetch("https://api.turing.sh/image/controlnet", data);
+    return await this.fetch("${this.options.host}/image/controlnet", data);
   }
   async dall(data: {
     prompt?: string;
@@ -49,7 +50,7 @@ export default class Image extends Base {
         done: boolean;
       }
   > {
-    return await this.fetch("https://api.turing.sh/image/dall-e", data);
+    return await this.fetch("${this.options.host}/image/dall-e", data);
   }
   async kandinsky(data: {
     prompt: string;
@@ -72,7 +73,7 @@ export default class Image extends Base {
         id: string;
       }
   > {
-    return await this.fetch("https://api.turing.sh/image/kandinsky", data);
+    return await this.fetch("${this.options.host}/image/kandinsky", data);
   }
   async sh(data: {
     prompt: string;
@@ -100,7 +101,7 @@ export default class Image extends Base {
         results?: any[];
       }
   > {
-    return await this.fetch("https://api.turing.sh/image/sh", data);
+    return await this.fetch("${this.options.host}/image/sh", data);
   }
   async upscale(data: {
     upscaler?: string;
@@ -109,7 +110,7 @@ export default class Image extends Base {
     | EventEmitter
     | { cost?: number; result?: string; status?: string; done?: boolean }
   > {
-    return await this.fetch("https://api.turing.sh/image/upscale", data);
+    return await this.fetch("${this.options.host}/image/upscale", data);
   }
   async vision(data: {
     model: any[];
@@ -118,6 +119,6 @@ export default class Image extends Base {
     | EventEmitter
     | { cost?: number; description?: string; text?: string; done?: boolean }
   > {
-    return await this.fetch("https://api.turing.sh/image/vision", data);
+    return await this.fetch("${this.options.host}/image/vision", data);
   }
 }

@@ -42,8 +42,9 @@ async function generateFiles(modules: any[], modelsList) {
         constructor(start: {
             apiKey: string;
             captchaKey: string;
-            options: {
-              stream: boolean;
+            options?: {
+              stream?: boolean;
+              host?: string;
             };
         }) {
             super(start);
@@ -73,11 +74,11 @@ async function generateFiles(modules: any[], modelsList) {
                 .join("\n");
               responseType = `{${responseType}}`;
             }
-
+            let host = "${this.options.host}";
             return `async ${nameFn}(data: {
                 ${type}
             }): Promise<EventEmitter | ${responseType}>{
-             return await this.fetch("https://api.turing.sh/${module}/${model.name}", data);
+             return await this.fetch("${host}/${module}/${model.name}", data);
            }`;
           })
           .join("\n")}

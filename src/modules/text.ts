@@ -5,8 +5,9 @@ export default class Text extends Base {
   constructor(start: {
     apiKey: string;
     captchaKey: string;
-    options: {
-      stream: boolean;
+    options?: {
+      stream?: boolean;
+      host?: string;
     };
   }) {
     super(start);
@@ -23,7 +24,7 @@ export default class Text extends Base {
     imageModificator?: string;
     max_tokens?: number;
   }): Promise<EventEmitter | any> {
-    return await this.fetch("https://api.turing.sh/text/alan", data);
+    return await this.fetch("${this.options.host}/text/alan", data);
   }
   async anthropic(data: {
     messages: any[];
@@ -32,7 +33,7 @@ export default class Text extends Base {
     temperature?: number;
     stream?: boolean;
   }): Promise<EventEmitter | { cost?: number; result?: string }> {
-    return await this.fetch("https://api.turing.sh/text/anthropic", data);
+    return await this.fetch("${this.options.host}/text/anthropic", data);
   }
   async filter(data: {
     text: string;
@@ -48,7 +49,7 @@ export default class Text extends Base {
         done?: boolean;
       }
   > {
-    return await this.fetch("https://api.turing.sh/text/filter", data);
+    return await this.fetch("${this.options.host}/text/filter", data);
   }
   async google(data: {
     messages: any[];
@@ -59,7 +60,7 @@ export default class Text extends Base {
   }): Promise<
     EventEmitter | { cost?: number; result?: string; done?: boolean }
   > {
-    return await this.fetch("https://api.turing.sh/text/google", data);
+    return await this.fetch("${this.options.host}/text/google", data);
   }
   async gpt(data: {
     messages: any[];
@@ -77,7 +78,7 @@ export default class Text extends Base {
         finishReason: string;
       }
   > {
-    return await this.fetch("https://api.turing.sh/text/gpt-new", data);
+    return await this.fetch("${this.options.host}/text/gpt-new", data);
   }
   async huggingface(data: {
     messages?: any[];
@@ -88,7 +89,7 @@ export default class Text extends Base {
   }): Promise<
     EventEmitter | { cost?: number; result?: string; done?: boolean }
   > {
-    return await this.fetch("https://api.turing.sh/text/huggingface", data);
+    return await this.fetch("${this.options.host}/text/huggingface", data);
   }
   async openchat(data: {
     messages: any[];
@@ -99,6 +100,6 @@ export default class Text extends Base {
     | EventEmitter
     | { result: string; done: boolean; cost: number; finishReason: string }
   > {
-    return await this.fetch("https://api.turing.sh/text/openchat", data);
+    return await this.fetch("${this.options.host}/text/openchat", data);
   }
 }

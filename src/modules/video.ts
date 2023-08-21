@@ -5,8 +5,9 @@ export default class Video extends Base {
   constructor(start: {
     apiKey: string;
     captchaKey: string;
-    options: {
-      stream: boolean;
+    options?: {
+      stream?: boolean;
+      host?: string;
     };
   }) {
     super(start);
@@ -15,6 +16,6 @@ export default class Video extends Base {
     prompt: string;
     duration?: number;
   }): Promise<EventEmitter | any> {
-    return await this.fetch("https://api.turing.sh/video/zelescope", data);
+    return await this.fetch("${this.options.host}/video/zelescope", data);
   }
 }

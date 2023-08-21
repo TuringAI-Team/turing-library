@@ -5,8 +5,9 @@ export default class Audio extends Base {
   constructor(start: {
     apiKey: string;
     captchaKey: string;
-    options: {
-      stream: boolean;
+    options?: {
+      stream?: boolean;
+      host?: string;
     };
   }) {
     super(start);
@@ -17,7 +18,7 @@ export default class Audio extends Base {
     duration?: number;
     stream?: boolean;
   }): Promise<EventEmitter | any> {
-    return await this.fetch("https://api.turing.sh/audio/music", data);
+    return await this.fetch("${this.options.host}/audio/music", data);
   }
   async stt(data: {
     model?: string;
@@ -26,7 +27,7 @@ export default class Audio extends Base {
     type?: string;
     stream?: boolean;
   }): Promise<EventEmitter | any> {
-    return await this.fetch("https://api.turing.sh/audio/stt", data);
+    return await this.fetch("${this.options.host}/audio/stt", data);
   }
   async tts(data: {
     model: string;
@@ -36,6 +37,6 @@ export default class Audio extends Base {
     slow?: boolean;
     stream?: boolean;
   }): Promise<EventEmitter | any> {
-    return await this.fetch("https://api.turing.sh/audio/tts", data);
+    return await this.fetch("${this.options.host}/audio/tts", data);
   }
 }
