@@ -78,7 +78,7 @@ async function generateFiles(modules: any[], modelsList) {
             return `async ${nameFn}(data: {
                 ${type}
             }): Promise<EventEmitter | ${responseType}>{
-             return await this.fetch("${host}/${module}/${model.name}", data);
+             return await this.fetch(\`${host}/${module}/${model.name}\`, data);
            }`;
           })
           .join("\n")}

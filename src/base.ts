@@ -20,9 +20,12 @@ export default class Base {
   }) {
     this.apiKey = start.apiKey;
     this.captchaKey = start.captchaKey;
-    if (start.options?.stream) this.options.stream = start.options.stream;
-    if (start.options?.host) this.options.host = start.options.host;
-    else this.options.host = "https://api.turing.sh/";
+    if (start.options) {
+      this.options = {
+        stream: start.options.stream || null,
+        host: start.options.host || "https://api.turing.sh",
+      };
+    }
   }
 
   async fetch(url: string, options: any): Promise<EventEmitter | any> {

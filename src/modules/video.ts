@@ -16,6 +16,6 @@ export default class Video extends Base {
     prompt: string;
     duration?: number;
   }): Promise<EventEmitter | any> {
-    return await this.fetch("${this.options.host}/video/zelescope", data);
+    return await this.fetch(`${this.options.host}/video/zelescope`, data);
   }
 }
