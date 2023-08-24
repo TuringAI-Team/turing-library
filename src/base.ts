@@ -5,6 +5,7 @@ import axios from "axios";
 export default class Base {
   apiKey: string;
   captchaKey: string;
+  superKey: string;
   options: {
     stream?: boolean;
     host?: string;
@@ -13,6 +14,7 @@ export default class Base {
   constructor(start: {
     apiKey: string;
     captchaKey: string;
+    superKey?: string;
     options?: {
       stream?: boolean;
       host?: string;
@@ -26,6 +28,7 @@ export default class Base {
         host: start.options.host || "https://api.turing.sh",
       };
     }
+    if (start.superKey) this.superKey = start.superKey;
   }
 
   async fetch(url: string, options: any): Promise<EventEmitter | any> {
@@ -37,6 +40,7 @@ export default class Base {
       Authorization: this.apiKey,
       "x-captcha-token": this.captchaKey,
     };
+    if (this.superKey) headers["secret"] = this.superKey;
     delete options.stream;
     if (isStream) {
       let event = new EventEmitter();
