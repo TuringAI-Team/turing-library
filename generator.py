@@ -18,7 +18,7 @@ def generate_files(modules, models_list):
             for model in models:
                 name_fn = model['name'].split("-")[0]
                 params = model['parameters']
-                response_params = model['response']
+                response_params = model.get('response', {})
                 file.write(f"\n    async def {name_fn}(self, data):\n")
                 file.write(f"        response = await self.fetch('{module}/{model['name']}', data)\n")
                 file.write(f"        return response\n")
