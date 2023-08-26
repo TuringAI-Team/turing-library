@@ -39,17 +39,7 @@ export default class Image extends Base {
     size?: string;
     image?: string;
     stream?: boolean;
-  }): Promise<
-    | EventEmitter
-    | {
-        cost: number;
-        results: any[];
-        status: string;
-        progress?: number;
-        id: string;
-        done: boolean;
-      }
-  > {
+  }): Promise<EventEmitter | any> {
     return await this.fetch(`${this.options.host}/image/dall-e`, data);
   }
   async kandinsky(data: {
@@ -63,16 +53,7 @@ export default class Image extends Base {
     cfg_scale?: number;
     model_version?: string;
     stream?: boolean;
-  }): Promise<
-    | EventEmitter
-    | {
-        cost: number;
-        results: any[];
-        status: string;
-        progress?: number;
-        id: string;
-      }
-  > {
+  }): Promise<EventEmitter | any> {
     return await this.fetch(`${this.options.host}/image/kandinsky`, data);
   }
   async sh(data: {
@@ -90,35 +71,19 @@ export default class Image extends Base {
     model?: string;
     nsfw?: boolean;
     stream?: boolean;
-  }): Promise<
-    | EventEmitter
-    | {
-        cost?: number;
-        id?: string;
-        status?: string;
-        progress?: number;
-        queue_position?: number;
-        results?: any[];
-      }
-  > {
+  }): Promise<EventEmitter | any> {
     return await this.fetch(`${this.options.host}/image/sh`, data);
   }
   async upscale(data: {
     upscaler?: string;
     image: string;
-  }): Promise<
-    | EventEmitter
-    | { cost?: number; result?: string; status?: string; done?: boolean }
-  > {
+  }): Promise<EventEmitter | any> {
     return await this.fetch(`${this.options.host}/image/upscale`, data);
   }
   async vision(data: {
     model: any[];
     image: string;
-  }): Promise<
-    | EventEmitter
-    | { cost?: number; description?: string; text?: string; done?: boolean }
-  > {
+  }): Promise<EventEmitter | any> {
     return await this.fetch(`${this.options.host}/image/vision`, data);
   }
 }

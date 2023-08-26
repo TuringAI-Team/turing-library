@@ -77,7 +77,7 @@ async function generateFiles(modules: any[], modelsList) {
             let host = "${this.options.host}";
             return `async ${nameFn}(data: {
                 ${type}
-            }): Promise<EventEmitter | ${responseType}>{
+            }): Promise<EventEmitter | any>{
              return await this.fetch(\`${host}/${module}/${model.name}\`, data);
            }`;
           })
