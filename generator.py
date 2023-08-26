@@ -10,8 +10,8 @@ def generate_files(modules, models_list):
         models = [model for model in models if model['name']]
 
         with open(f"./src/modules/{module}.py", "w") as file:
-            file.write(f"import Base\n")
-            file.write(f"from events import EventEmitter\n")
+            file.write(f"import base\n")
+            file.write(f"from pyee import EventEmitter\n")
             file.write(f"\nclass {module.capitalize()}(Base):\n")
             file.write(f"    def __init__(self, start):\n")
             file.write(f"        super().__init__(start)\n")

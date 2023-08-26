@@ -1,5 +1,5 @@
-import Base
-from events import EventEmitter
+import base
+from pyee import EventEmitter
 
 class Video(Base):
     def __init__(self, start):
