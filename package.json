@@ -1,6 +1,6 @@
 {
   "name": "turing.sh",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A package to interact with the api from TuringAI (turing.sh) and access the most powerful AI models in the world.",
   "main": "dist/index.js",
   "type": "module",
