@@ -57,24 +57,28 @@ export default class Text extends Base {
     max_tokens?: number;
     temperature?: number;
     plugins?: any[];
+    id?: string;
   }): Promise<EventEmitter | any> {
     return await this.fetch(`${this.options.host}/text/gpt-new`, data);
-  }
-  async huggingface(data: {
-    messages?: any[];
-    prompt?: string;
-    chat?: boolean;
-    model: string;
-    stop?: string;
-  }): Promise<EventEmitter | any> {
-    return await this.fetch(`${this.options.host}/text/huggingface`, data);
   }
   async openchat(data: {
     messages: any[];
     model?: string;
     max_tokens?: number;
     temperature?: number;
+    id?: string;
+    autoSystemMessage?: boolean;
   }): Promise<EventEmitter | any> {
     return await this.fetch(`${this.options.host}/text/openchat`, data);
+  }
+  async pawan(data: {
+    messages: any[];
+    model?: string;
+    max_tokens?: number;
+    temperature?: number;
+    id?: string;
+    autoSystemMessage?: boolean;
+  }): Promise<EventEmitter | any> {
+    return await this.fetch(`${this.options.host}/text/pawan`, data);
   }
 }
