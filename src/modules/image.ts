@@ -42,6 +42,18 @@ export default class Image extends Base {
   }): Promise<EventEmitter | any> {
     return await this.fetch(`${this.options.host}/image/dall-e`, data);
   }
+  async fast_sdxl(data: {
+    prompt: string;
+    steps?: number;
+    number?: number;
+    negative_prompt?: string;
+    width?: number;
+    height?: number;
+    model_version?: string;
+    stream?: boolean;
+  }): Promise<EventEmitter | any> {
+    return await this.fetch(`${this.options.host}/image/fast_sdxl`, data);
+  }
   async kandinsky(data: {
     prompt: string;
     steps?: number;
